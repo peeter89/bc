@@ -58,6 +58,7 @@ class AuthorListView(generic.ListView):
 
 class AuthorDetailView(generic.DetailView):
 	model = Author
+	template_name = 'content/author_detail.html'
 	
 
 	def get_context_data(self,**kwargs):
@@ -96,6 +97,7 @@ class PostListView(generic.ListView):
 
 class PostDetailView(generic.DetailView):
 	model = Post
+	template_name = 'content/post_detail.html'
 
 	def get_queryset(self):
 		return Post.objects.filter(date_publish__lte=datetime.now())

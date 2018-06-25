@@ -1,5 +1,5 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -14,9 +14,15 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
+                {% if author.photo %}
                 <div class="col-md-4">
                   <img class="img-fluid" src="{{ author.photo.url }}" alt="Card image"> 
                 </div>
+                {% else %}
+                <div class="col-md-4">
+                  <img class="img-fluid" src="{% static "images/empty.png" %}" alt="Card image"> 
+                </div>
+                {% endif %}
                 <div class="col-md-8">
                   <a href="{{ author.get_absolute_url }}"><h3>{{ author }}</h3></a><small> {{ author.date_of_birth|timesince }} </small>
                   <p class="card-text">{{ author.description|truncatechars:120 }}</p>

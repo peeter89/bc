@@ -1,15 +1,19 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container">
   {% if post.image %}
   <div class="col-md-12">
     <img class="img-fluid" src="{{ post.image.url }}" alt="Post image">
   </div>
+  {% else %}
+  <div class="col-md-12">
+    <img class="img-fluid" src="{% static "images/post.png" %}" alt="Post image">
+  </div>
   {% endif %}
   <div class="py-2 col-md-12">
     <h1>|{{ post.name }}
-        <a href="{% url 'author-detail' post.author.pk %}"><small>{{post.author}}</a> {{ post.date_publish }}</small>
+        <a href="{% url 'author-detail' post.author.slug %}"><small>{{post.author}}</a> {{ post.date_publish }}</small>
       </h1> 
   </div>
   <div class="col-md-12">
