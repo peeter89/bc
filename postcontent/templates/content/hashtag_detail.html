@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="col-sm-12">
+
+    <div class="row">
+      <div class="col-md-12 off-set-4 text-center">
+        <h1>#{{ hashtag}}</h1>
+        <small>{{ hashtag.author }}</small> 
+      </div>
+    </div>
+    <div class="col-md-12">
+      {% if hashtag.publish_post_set.all %}
+
+        {% for obj in hashtag.publish_post_set.all %}
+          {% include 'components/post_list.html' %}
+        {% endfor %}
+
+      {% else %}
+        <div class="col-md-12 text-center">
+          <p>There are no author in the library.</p>
+        </div>
+      {% endif %}
+    </div> 
+
+  </div>
+
+</div>
+
+{% endblock %}

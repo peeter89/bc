@@ -1,0 +1,38 @@
+<div>
+	<div class="carousel slide" data-ride="carousel" id="carousel-2" data-interval="5000">
+		<ol class="carousel-indicators">
+			{% for obj in carousel_post %}
+			<li data-target="#carousel-2" data-slide-to="{{ forloop.counter0 }}"
+			{% if forloop.first %}
+			 	class="active"
+			 {% endif %}
+			 >&nbsp;</li>
+			{% endfor %}
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			{% for obj in carousel_post %}
+
+			{% if forloop.first %}
+				<div class="carousel-item active">
+			{% else %}
+				<div class="carousel-item">
+			{% endif %}
+			
+					<div class="py-5 text-center" style="background-image: url('{{ obj.image.url }}');background-size:cover;background-position:center center;">
+						<div class="py-5">
+						</div>
+						<div class="py-5">
+
+						</div>
+						
+					</div>
+			{% if forloop.first %}
+				</div>
+			{% else %}
+				</div>
+			{% endif %}
+
+			{% endfor %}
+		</div>
+	</div>
+</div>

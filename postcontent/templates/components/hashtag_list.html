@@ -1,0 +1,5 @@
+{% if forloop.first %}
+  <a href="{% url 'hashtag-detail' obj.pk %}">#{{obj}}</a>                            
+{% else %}
+	<a style="margin-left:5px" href="{% url 'hashtag-detail' obj.pk %}">#{{obj}}</a>
+{% endif %}

@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  {% if post.image %}
+  <div class="col-md-12">
+    <img class="img-fluid" src="{{ post.image.url }}" alt="Post image">
+  </div>
+  {% endif %}
+  <div class="py-2 col-md-12">
+    <h1>|{{ post.name }}
+        <a href="{% url 'author-detail' post.author.pk %}"><small>{{post.author}}</a> {{ post.date_publish }}</small>
+      </h1> 
+  </div>
+  <div class="col-md-12">
+
+    {% for obj in post.hashtag.all %}
+      {% include 'components/hashtag_list.html' %}
+    {% endfor %}
+              
+  </div>
+  <div class="py-2 col-md-12">
+
+    <p>{{ post.description }}</p>
+              
+  </div>
+
+</div>
+  
+{% endblock %}

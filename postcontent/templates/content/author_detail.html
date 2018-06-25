@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+{% load static %}
+  
+{% block content %}
+<div class="container">
+  <div class="py-3 col-md-12 text-center">
+    {% if author.photo %}
+    <div class="row">
+      <div class="col-md-4 center-block">
+        
+      </div>
+      <div class="col-md-4 center-block">
+        <img class="img-fluid rounded-circle p-3" src="{{ author.photo.url }}" alt="Profile image"> 
+      </div>
+      <div class="col-md-4 center-block">
+        
+      </div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col-md-4">
+        
+      </div>
+      <div class="col-md-4">
+        <img class="img-fluid rounded-circle p-3" src="{% static "images/empty.png" %}" alt="Profile image"> 
+      </div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+    {% endif %}
+    <div class="row">
+      
+      <div class="col-md-12 off-set-4">
+        <h1>{{ author}}</h1> 
+      </div>
+      
+    </div> 
+    <div class="row">
+      
+      <div class="col-md-12 off-set-4">
+        <small>{{ author.date_of_birth }}</small>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="py-0 col-md-12">
+    <p>{{ author.description }}</p>
+  </div>
+  <div class="py-3 col-md-12">
+    {% for obj in author.hashtag_set.all %}
+      {% include 'components/hashtag_list.html' %}
+    {% endfor %}
+  </div>
+
+
+
+    <div class="col-md-12">
+      {% if author.publish_post_set %}
+
+        {% for obj in author.publish_post_set %}
+          {% include 'components/post_list.html' %}
+      {% endfor %}
+
+      {% else %}
+        <div class="col-md-12 text-center">
+          <p>There are no author in the library.</p>
+        </div>
+      {% endif %}
+    </div>
+</div>
+{% endblock %}

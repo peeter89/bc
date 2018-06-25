@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="py-3 col-md-12 text-center">
+     <h1>{{ title }}</h1>
+  </div>
+
+  {% if author_list %}
+    {% for author in author_list %}
+      <div class="row">
+        <div class="col-md-12 p-1">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="img-fluid" src="{{ author.photo.url }}" alt="Card image"> 
+                </div>
+                <div class="col-md-8">
+                  <a href="{{ author.get_absolute_url }}"><h3>{{ author }}</h3></a><small> {{ author.date_of_birth|timesince }} </small>
+                  <p class="card-text">{{ author.description|truncatechars:120 }}</p>
+                  <p>Publish Post: {{ author.publish_post_set.count }}</p>
+                  <div>
+                      {% for obj in author.hashtag_set.all %}
+                        {% include 'components/hashtag_list.html' %}
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    {% endfor %}
+  {% else %}
+    <div class="col-md-12 text-center">
+      <p>There are no author in the library.</p>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+
+ 
+
+  
+     

@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="py-3 col-md-12 text-center">
+    <h1>{{ title }}</h1>
+  </div>
+
+  <!-- list post -->
+  <div class="row">
+    <div class="col-md-9">
+      {% if post_list %}
+
+        {% for obj in post_list %}
+          {% include 'components/post_list.html' %}
+        {% endfor %}
+
+      {% else %}
+        <div class="col-md-12 text-center">
+          <p>There are no author in the library.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- list tag -->
+
+    <div class="col-md-3 p-1">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Top 5 #</h3>
+          {% if hashtag_list %}
+            {% for hashtag in hashtag_list %}
+              <div class="col-md-12">
+                <a href="{{ hashtag.get_absolute_url }}" class="card-link"><h4>#{{ hashtag.name }}</a> - {{ hashtag.publish_post_set.count }} post </h4>
+              </div>            
+            {% endfor %}
+          {% else %}
+            <div class="col-md-12 text-center">
+              <p>There are no author in the library.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>     
+</div>
+
+{% endblock %}
